@@ -1,7 +1,6 @@
 &nbsp;
 <p align="center">
-  <a href="https://ghost.org">
-    <img src="https://raw.githubusercontent.com/roramirez/qpanel/master/qpanel/themes/qpanel/static/img/logo_header.png" alt="QPanel" />
+  <a href="https://voipiran.io">
   </a>
 </p>
 <h3 align="center">The Dashboard for Queues/CallCenter in Asterisk and FreeSWITCH</h3>
