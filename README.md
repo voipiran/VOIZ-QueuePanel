@@ -5,12 +5,7 @@
 </p>
 <h3 align="center">The Dashboard for Queues/CallCenter in Asterisk and FreeSWITCH</h3>
 <hr />
-<p align="center">
 
-    <a href="https://gitter.im/qpanel/Lobby">
-        <img src="https://badges.gitter.im/qpanel/Lobby.svg" alt="Chat on Gitter" />
-    </a>
-</p>
 
 
 ![Demo](samples/animation.gif)
