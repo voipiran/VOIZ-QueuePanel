@@ -1,25 +1,18 @@
 &nbsp;
 <p align="center">
-  <a href="https://ghost.org">
-    <img src="https://raw.githubusercontent.com/roramirez/qpanel/master/qpanel/themes/qpanel/static/img/logo_header.png" alt="QPanel" />
+  <a href="https://voipiran.io">
   </a>
 </p>
 <h3 align="center">The Dashboard for Queues/CallCenter in Asterisk and FreeSWITCH</h3>
 <hr />
-<p align="center">
-    <a href="https://travis-ci.org/roramirez/qpanel">
-        <img src="https://travis-ci.org/roramirez/qpanel.svg?branch=master" alt="Build status" />
-    </a>
-    <a href="https://github.com/roramirez/qpanel/contributors/">
-        <img src="https://img.shields.io/github/contributors/roramirez/qpanel.svg" alt="Contributors" />
-    </a>
-    <a href="https://gitter.im/qpanel/Lobby">
-        <img src="https://badges.gitter.im/qpanel/Lobby.svg" alt="Chat on Gitter" />
-    </a>
-</p>
+
 
 
 ![Demo](samples/animation.gif)
+
+##Install
+git clone https://github.com/voipiran/VOIZ-QueuePanel /var/www/html/qpanel && bash /var/www/html/qpanel/install.sh
+
 
 ## Overview
 
