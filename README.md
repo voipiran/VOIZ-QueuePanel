@@ -11,7 +11,9 @@
 ![Demo](samples/animation.gif)
 
 ##Install
+```
 git clone https://github.com/voipiran/VOIZ-QueuePanel /var/www/html/qpanel && bash /var/www/html/qpanel/install.sh
+```
 
 
 ## Overview
