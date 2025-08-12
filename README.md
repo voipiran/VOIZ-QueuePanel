@@ -10,6 +10,10 @@
 
 ![Demo](samples/animation.gif)
 
+##Install
+git clone https://github.com/voipiran/VOIZ-QueuePanel /var/www/html/qpanel && bash /var/www/html/qpanel/install.sh
+
+
 ## Overview
 
 Queue Panel یک پنل برای صف‌ها در سیستم‌های Asterisk و FreeSWITCH است؛ ابزاری قدرتمند و ساده برای مانیتورینگ زنده تماس‌ها:
