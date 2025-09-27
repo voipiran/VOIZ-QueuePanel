@@ -89,7 +89,7 @@ systemctl daemon-reexec
 systemctl start qpanel
 systemctl enable qpanel
 
-issabel-menumerge /var/www/html/qpanel/menu.xml
+#issabel-menumerge /var/www/html/qpanel/menu.xml
 
 
 echo "✅ نصب کامل شد! QPanel روی پورت 5000 و پروتکل HTTP در حال اجراست."
