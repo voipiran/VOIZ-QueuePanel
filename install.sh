@@ -40,12 +40,38 @@ pip3 install flask Flask-Babel --upgrade Werkzeug
 git clone https://github.com/maxcountryman/flask-themes.git /tmp/flask-themes
 pip3 install /tmp/flask-themes
 
+
+# نصب آفلاین Node.js 18.20.8 و وابستگی‌ها
+set -e
 echo "🧩 نصب Node.js و وابستگی‌ها..."
-curl -sL https://rpm.nodesource.com/setup_18.x | bash -
-dnf install -y nodejs
-pip3 install --upgrade Flask-Themes
-pip3 install -r /var/www/html/qpanel/requirements.txt
+
+# متغیرها
+VERSION="18.20.8"
+INSTALL_DIR="/opt/node"
+TMP_DIR="/tmp/node-install"
+
+# دانلود و استخراج Node.js
+mkdir -p "$TMP_DIR"
+cd "$TMP_DIR"
+[ ! -f "node-v${VERSION}-linux-x64.tar.xz" ] && curl -LO "https://nodejs.org/dist/v${VERSION}/node-v${VERSION}-linux-x64.tar.xz"
+tar -xJf "node-v${VERSION}-linux-x64.tar.xz"
+mkdir -p "$INSTALL_DIR"
+mv "node-v${VERSION}-linux-x64"/* "$INSTALL_DIR/"
+chown -R root:root "$INSTALL_DIR"
+chmod -R 755 "$INSTALL_DIR"
+ln -sf "$INSTALL_DIR/bin/node" /usr/local/bin/node
+ln -sf "$INSTALL_DIR/bin/npm" /usr/local/bin/npm
+rm -rf "$TMP_DIR"
+
+# نصب وابستگی‌های Python
+pip3 install --user --upgrade Flask-Themes
+pip3 install --user -r /var/www/html/qpanel/requirements.txt
+
+# نصب بسته‌های npm
+cd /var/www/html/qpanel
 npm install
+
+echo "نصب کامل شد: Node.js $(node --version), npm $(npm --version)"
 
 echo "⚙️ تنظیم فایل config.ini..."
 cp samples/config.ini-dist config.ini
