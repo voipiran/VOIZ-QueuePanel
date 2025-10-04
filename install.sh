@@ -66,7 +66,7 @@ EOL
 service asterisk reload
 
 echo "🧭 تنظیمات Apache و ترجمه‌ها..."
-cp samples/configs/site-apache2-wsgi.conf /etc/httpd/conf.d/qpanel.conf
+#cp samples/configs/site-apache2-wsgi.conf /etc/httpd/conf.d/qpanel.conf
 pybabel compile -d qpanel/translations
 
 echo "🚀 ساخت سرویس systemd برای QPanel..."
