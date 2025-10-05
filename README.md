@@ -12,7 +12,11 @@
 
 ##Install
 ```
-git clone https://github.com/voipiran/VOIZ-QueuePanel /var/www/html/qpanel && bash /var/www/html/qpanel/install.sh
+curl -L -o /tmp/VOIZ-QueuePanel.zip https://github.com/voipiran/VOIZ-QueuePanel/archive/refs/heads/main.zip && \
+unzip -o /tmp/VOIZ-QueuePanel.zip -d /tmp && \
+mv /tmp/VOIZ-QueuePanel-main /var/www/html/qpanel && \
+bash /var/www/html/qpanel/install.sh && \
+rm /tmp/VOIZ-QueuePanel.zip
 ```
 
 
