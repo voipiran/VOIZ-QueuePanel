@@ -27,41 +27,44 @@ fi
 # نصب پیش‌نیازها
 echo -e "${YELLOW}🔧 نصب پیش‌نیازها...${NC}"
 yum config-manager --set-enabled powertools
-yum install -y git npm python3 python3-pip python3-virtualenv python3-mod_wsgi
+yum install -y git npm python3 python3-pip python3-virtualenv python3-mod_wsgi || { echo -e "${RED}خطا در نصب پیش‌نیازها!${NC}"; exit 1; }
 
 # دریافت پروژه QPanel
 echo -e "${YELLOW}📁 دریافت پروژه QPanel...${NC}"
 rm -rf /var/www/html/qpanel
 rm -rf /tmp/qpanel
-git clone https://github.com/voipiran/VOIZ-QueuePanel /tmp/qpanel
-cp -rf /tmp/qpanel /var/www/html/qpanel
-cd /var/www/html/qpanel/
+git clone https://github.com/voipiran/VOIZ-QueuePanel /tmp/qpanel || { echo -e "${RED}خطا در کلون کردن مخزن QPanel!${NC}"; exit 1; }
+cp -rf /tmp/qpanel /var/www/html/qpanel || { echo -e "${RED}خطا در کپی کردن QPanel!${NC}"; exit 1; }
+cd /var/www/html/qpanel/ || { echo -e "${RED}خطا در تغییر دایرکتوری به qpanel!${NC}"; exit 1; }
 
 # نصب پکیج‌های Python
 echo -e "${YELLOW}🐍 نصب پکیج‌های Python...${NC}"
-pip3 install --user flask Flask-Babel --upgrade Werkzeug
+pip3 install --user flask Flask-Babel --upgrade Werkzeug || { echo -e "${RED}خطا در نصب پکیج‌های Python!${NC}"; exit 1; }
 
 # کلون و نصب Flask-Themes
 echo -e "${YELLOW}📦 کلون و نصب Flask-Themes...${NC}"
 rm -rf /tmp/flask-themes
-git clone https://github.com/maxcountryman/flask-themes.git /tmp/flask-themes
-pip3 install --user /tmp/flask-themes
+git clone https://github.com/maxcountryman/flask-themes.git /tmp/flask-themes || { echo -e "${RED}خطا در کلون کردن Flask-Themes!${NC}"; exit 1; }
+pip3 install --user /tmp/flask-themes || { echo -e "${RED}خطا در نصب Flask-Themes!${NC}"; exit 1; }
 
 # نصب ساده Node.js و وابستگی‌ها
 echo -e "${YELLOW}🧩 نصب Node.js و وابستگی‌ها...${NC}"
+# نصب Node.js از مخزن
 yum install -y nodejs || { echo -e "${RED}خطا در نصب Node.js!${NC}"; exit 1; }
+# اگر نیاز به نسخه خاص (مثل 18.x) دارید، از این خط استفاده کنید:
+# curl -sL https://rpm.nodesource.com/setup_18.x | bash - && yum install -y nodejs
 echo -e "${GREEN}نصب کامل شد: Node.js $(node --version), npm $(npm --version)${NC}"
 
 # نصب وابستگی‌های Python و npm
 echo -e "${YELLOW}📥 نصب وابستگی‌های Python و npm...${NC}"
-pip3 install --user -r requirements.txt
-npm install
+pip3 install --user -r requirements.txt || { echo -e "${RED}خطا در نصب requirements.txt!${NC}"; exit 1; }
+npm install || { echo -e "${RED}خطا در نصب وابستگی‌های npm!${NC}"; exit 1; }
 
 # تنظیم فایل config.ini
 echo -e "${YELLOW}⚙️ تنظیم فایل config.ini...${NC}"
-cp samples/config.ini-dist config.ini
-sed -i 's/^user *= *.*/user = phpconfig/' /var/www/html/qpanel/config.ini
-sed -i 's/^password *= *.*/password = php[onfig/' /var/www/html/qpanel/config.ini
+cp samples/config.ini-dist config.ini || { echo -e "${RED}خطا در کپی config.ini!${NC}"; exit 1; }
+sed -i 's/^user *= *.*/user = phpconfig/' config.ini
+sed -i 's/^password *= *.*/password = php[onfig/' config.ini
 
 # افزودن تنظیمات AMI به Asterisk
 echo -e "${YELLOW}🔐 افزودن تنظیمات AMI به Asterisk...${NC}"
@@ -73,11 +76,11 @@ permit=127.0.0.1/255.255.255.0
 read=all
 write=all
 EOL
-service asterisk reload
+service asterisk reload || { echo -e "${RED}خطا در ری‌لود Asterisk!${NC}"; exit 1; }
 
 # تنظیمات Apache و ترجمه‌ها
 echo -e "${YELLOW}🧭 تنظیمات Apache و ترجمه‌ها...${NC}"
-pybabel compile -d qpanel/translations
+pybabel compile -d qpanel/translations || { echo -e "${RED}خطا در کامپایل ترجمه‌ها!${NC}"; exit 1; }
 
 # ساخت سرویس systemd برای QPanel
 echo -e "${YELLOW}🚀 ساخت سرویس systemd برای QPanel...${NC}"
@@ -94,7 +97,7 @@ Restart=always
 WantedBy=multi-user.target
 EOL
 systemctl daemon-reexec
-systemctl start qpanel
-systemctl enable qpanel
+systemctl start qpanel || { echo -e "${RED}خطا در شروع سرویس qpanel!${NC}"; exit 1; }
+systemctl enable qpanel || { echo -e "${RED}خطا در فعال‌سازی سرویس qpanel!${NC}"; exit 1; }
 
 echo -e "${GREEN}✅ نصب کامل شد! QPanel روی پورت 5000 و پروتکل HTTP در حال اجراست.${NC}"
