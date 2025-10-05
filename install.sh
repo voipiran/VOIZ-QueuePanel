@@ -49,10 +49,7 @@ pip3 install --user /tmp/flask-themes || { echo -e "${RED}خطا در نصب Fla
 
 # نصب ساده Node.js و وابستگی‌ها
 echo -e "${YELLOW}🧩 نصب Node.js و وابستگی‌ها...${NC}"
-# نصب Node.js از مخزن
 yum install -y nodejs || { echo -e "${RED}خطا در نصب Node.js!${NC}"; exit 1; }
-# اگر نیاز به نسخه خاص (مثل 18.x) دارید، از این خط استفاده کنید:
-# curl -sL https://rpm.nodesource.com/setup_18.x | bash - && yum install -y nodejs
 echo -e "${GREEN}نصب کامل شد: Node.js $(node --version), npm $(npm --version)${NC}"
 
 # نصب وابستگی‌های Python و npm
