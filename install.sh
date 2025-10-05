@@ -26,10 +26,10 @@ fi
 echo "🔧 نصب پیش‌نیازها..."
 yum config-manager --set-enabled powertools
 yum install -y git npm python3 python3-pip python3-virtualenv python3-mod_wsgi
-echo "📁 دریافت پروژه QPanel..."
-cd /var/www/html
-git clone https://github.com/voipiran/VOIZ-QueuePanel qpanel
-cd qpanel/
+#cd /var/www/html
+#git clone https://github.com/voipiran/VOIZ-QueuePanel qpanel
+cp -rf qpanel /var/www/html/ 2>/dev/null
+cd /var/www/html/qpanel/
 echo "🐍 نصب پکیج‌های Python..."
 pip3 install flask Flask-Babel --upgrade Werkzeug
 git clone https://github.com/maxcountryman/flask-themes.git /tmp/flask-themes
