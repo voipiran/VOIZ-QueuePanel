@@ -65,6 +65,8 @@ EOL
 service asterisk reload || { echo -e "${RED}خطا در ری‌لود Asterisk!${NC}"; exit 1; }
 # تنظیمات Apache و ترجمه‌ها
 echo -e "${YELLOW}🧭 تنظیمات Apache و ترجمه‌ها...${NC}"
+cp samples/configs/site-apache2-wsgi.conf /etc/httpd/conf.d/qpanel.conf
+pybabel compile -d qpanel/translations
 # ساخت سرویس systemd برای QPanel
 echo -e "${YELLOW}🚀 ساخت سرویس systemd برای QPanel...${NC}"
 cat <<EOL > /etc/systemd/system/qpanel.service
