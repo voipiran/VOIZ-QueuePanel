@@ -13,9 +13,9 @@
 ##Install
 ```
 if ! command -v git >/dev/null 2>&1; then yum install -y git; fi && \
-rm -rf /tmp/qpanel && \
-git clone https://github.com/voipiran/VOIZ-QueuePanel /tmp/qpanel && \
-bash /tmp/qpanel/install.sh
+rm -rf /var/www/html/qpanel && \
+git clone https://github.com/voipiran/VOIZ-QueuePanel /var/www/html && \
+bash /var/www/html/qpanel/install.sh
 ```
 
 
