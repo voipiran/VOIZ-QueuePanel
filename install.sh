@@ -65,8 +65,6 @@ EOL
 service asterisk reload || { echo -e "${RED}خطا در ری‌لود Asterisk!${NC}"; exit 1; }
 # تنظیمات Apache و ترجمه‌ها
 echo -e "${YELLOW}🧭 تنظیمات Apache و ترجمه‌ها...${NC}"
-command -v pybabel >/dev/null 2>&1 || { pip3 install --force-reinstall Babel || { echo -e "${RED}خطا در نصب مجدد Babel!${NC}"; exit 1; }; }
-pybabel compile -d qpanel/translations || { echo -e "${RED}خطا در کامپایل ترجمه‌ها!${NC}"; exit 1; }
 # ساخت سرویس systemd برای QPanel
 echo -e "${YELLOW}🚀 ساخت سرویس systemd برای QPanel...${NC}"
 cat <<EOL > /etc/systemd/system/qpanel.service
