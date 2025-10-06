@@ -45,7 +45,7 @@ pip3 install --user /tmp/flask-themes || { echo -e "${RED}خطا در نصب Fla
 
 # نصب ساده Node.js و وابستگی‌ها
 echo -e "${YELLOW}🧩 نصب Node.js و وابستگی‌ها...${NC}"
-yum install -y nodejs || { echo -e "${RED}خطا در نصب Node.js!${NC}"; exit 1; }
+yum install -y nodejs --skip-broken || { echo -e "${RED}خطا در نصب Node.js!${NC}"; exit 1; }
 echo -e "${GREEN}نصب کامل شد: Node.js $(node --version), npm $(npm --version)${NC}"
 
 # نصب وابستگی‌های Python و npm
