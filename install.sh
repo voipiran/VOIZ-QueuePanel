@@ -30,12 +30,7 @@ echo -e "${YELLOW}🔧 نصب پیش‌نیازها...${NC}"
 yum config-manager --set-enabled powertools
 yum install -y git npm python3 python3-pip python3-virtualenv python3-mod_wsgi || { echo -e "${RED}خطا در نصب پیش‌نیازها!${NC}"; exit 1; }
 
-# دریافت پروژه QPanel
-echo -e "${YELLOW}📁 دریافت پروژه QPanel...${NC}"
-rm -rf /var/www/html/qpanel
-rm -rf /tmp/qpanel
-git clone https://github.com/voipiran/VOIZ-QueuePanel /tmp/qpanel || { echo -e "${RED}خطا در کلون کردن مخزن QPanel!${NC}"; exit 1; }
-cp -rf /tmp/qpanel /var/www/html/qpanel || { echo -e "${RED}خطا در کپی کردن QPanel!${NC}"; exit 1; }
+
 cd /var/www/html/qpanel/ || { echo -e "${RED}خطا در تغییر دایرکتوری به qpanel!${NC}"; exit 1; }
 
 # نصب پکیج‌های Python
@@ -55,14 +50,14 @@ echo -e "${GREEN}نصب کامل شد: Node.js $(node --version), npm $(npm --ve
 
 # نصب وابستگی‌های Python و npm
 echo -e "${YELLOW}📥 نصب وابستگی‌های Python و npm...${NC}"
-pip3 install --user -r requirements.txt || { echo -e "${RED}خطا در نصب requirements.txt!${NC}"; exit 1; }
+pip3 install --user -r /var/www/html/qpanel/requirements.txt || { echo -e "${RED}خطا در نصب requirements.txt!${NC}"; exit 1; }
 npm install || { echo -e "${RED}خطا در نصب وابستگی‌های npm!${NC}"; exit 1; }
 
 # تنظیم فایل config.ini
 echo -e "${YELLOW}⚙️ تنظیم فایل config.ini...${NC}"
-cp samples/config.ini-dist config.ini || { echo -e "${RED}خطا در کپی config.ini!${NC}"; exit 1; }
-sed -i 's/^user *= *.*/user = phpconfig/' config.ini
-sed -i 's/^password *= *.*/password = php[onfig/' config.ini
+cp /var/www/html/qpanel/samples/config.ini-dist config.ini || { echo -e "${RED}خطا در کپی config.ini!${NC}"; exit 1; }
+sed -i 's/^user *= *.*/user = phpconfig/' /var/www/html/qpanel/config.ini
+sed -i 's/^password *= *.*/password = php[onfig/' /var/www/html/qpanel/config.ini
 
 # افزودن تنظیمات AMI به Asterisk
 echo -e "${YELLOW}🔐 افزودن تنظیمات AMI به Asterisk...${NC}"
