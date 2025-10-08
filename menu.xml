@@ -3,7 +3,7 @@
 <module> 
   <menulist> 
 
-	<menuitem menuid="qpanel" desc="پنل زنده صف"
+	<menuitem menuid="qpanel" desc="Queue Panel"
 parent="pbxconfig" module="no" link="qpanel/" order="5"> 
       <permissions> 
         <group id="1" name="administrator" desc="total access"></group> 
